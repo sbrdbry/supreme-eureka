@@ -2,9 +2,9 @@ pipeline {
   environment {
     registry = "sharpfranklin/192.168.1.156:5000"
     registryCredential = ''
-    dockerImage = ''
+    dockerImage = 'supreme-eureka'
   }
-  agent any
+	agent { node { label 'copper' } }
   stages {
     stage('Cloning our Git') {
       steps {
