@@ -14,7 +14,7 @@ pipeline {
     stage('Building our image') {
       steps {
         script {
-          sh "echo $BUILD_NUMBER"
+          //sh "echo $BUILD_NUMBER"
           dockerImage = docker.build registry + ":${BUILD_NUMBER}"
         }
       }
@@ -22,7 +22,7 @@ pipeline {
     stage('Deploy our image') {
       steps {
         script {
-          docker.withRegistry( 'http://192.168.1.156:5000' ) {
+          docker.withRegistry( 'https://192.168.1.156:5000' ) {
             dockerImage.push()
           }
         }
