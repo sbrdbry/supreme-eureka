@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning our Git') {
       steps {
-        git 'https://github.com/sbrdbry/supreme-eureka.git'
+        git branch: 'main', url: 'https://github.com/sbrdbry/supreme-eureka.git'
       }
     }
     stage('Building our image') {
