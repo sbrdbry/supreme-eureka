@@ -1,8 +1,8 @@
 pipeline {
   environment {
-    registry = 'sharpfranklin/192.168.1.156:5000'
+    registry = 'sharpfranklin/alpine'
     registryCredential = ''
-    dockerImage = 'supreme-eureka'
+    dockerImage = ''
   }
 	agent { node { label 'copper' } }
   stages {
@@ -22,7 +22,7 @@ pipeline {
     stage('Deploy our image') {
       steps {
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry( '192.168.1.156:5000', registryCredential ) {
             dockerImage.push()
           }
         }
