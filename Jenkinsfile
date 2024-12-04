@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "sharpfranklin/192.168.1.156:5000"
+    registry = 'sharpfranklin/192.168.1.156:5000'
     registryCredential = ''
     dockerImage = 'supreme-eureka'
   }
