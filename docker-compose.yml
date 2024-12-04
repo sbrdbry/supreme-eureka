@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: nginx:1-alpine
+    restart: always
+    ports:
+      - 8090:80
+    volumes:
+      - ./dist:/usr/share/nginx/html
+      - ./nginx/conf:/etc/nginx/conf.d
