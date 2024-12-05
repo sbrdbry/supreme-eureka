@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = 'sharpfranklin/alpine'
-    registryCredential = ''
+    registry = 'sharpfranklin/supreme-eureka'
+    registryCredential = '5029e41d-f41a-4ee5-a164-9ef0c91b97f9'
     dockerImage = ''
   }
 	agent { node { label 'copper' } }
@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy our image') {
       steps {
         script {
-          docker.withRegistry( 'https://192.168.1.156:5000' ) {
+          docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
             dockerImage.push()
           }
         }
