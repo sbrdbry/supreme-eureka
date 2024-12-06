@@ -29,8 +29,18 @@ pipeline {
           docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
             dockerImage.push()
           }
+          //sh "ssh ubuntu@192.168.1.142"
         }
       }
+    }
+    stage ('Deploy to remote host'){ {
+        steps{
+            sshagent(credentials : ['171f98f4-f21b-476c-8264-b20a07667b1b']) {
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.1.142 uptime'
+                sh 'ssh -v ubuntu@192.168.1.142'
+                sh 'scp ./* ubuntu@192.168.1.142:/home/ubuntu/testdir'
+            }
+        }
     }
     stage('Cleaning up') {
       steps {
