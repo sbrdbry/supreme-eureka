@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy our image') {
       steps {
         script {
-          docker.withRegistry( 'registry.shrulp.com', registryCredential ) {
+          docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
             dockerImage.push()
           }
         }
