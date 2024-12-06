@@ -11,19 +11,19 @@ pipeline {
         git branch: 'main', url: 'https://github.com/sbrdbry/supreme-eureka.git'
       }
     }
-    stage('Building our image') {
+    /*stage('Building our image') {
       steps {
         script {
           dockerImage = docker.build registry + ":${BUILD_NUMBER}"
         }
       }
-    }
+    }*/
     /*stage('Login') {
         steps {
             sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin https://registry.shrulp.com"
         }
     }*/
-    stage('Deploy our image') {
+    /*stage('Deploy our image') {
       steps {
         script {
           docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
@@ -32,7 +32,7 @@ pipeline {
           //sh "ssh ubuntu@192.168.1.142"
         }
       }
-    }
+    }*/
     stage ('Deploy to remote host') {
         steps {
             sshagent(credentials : ['171f98f4-f21b-476c-8264-b20a07667b1b']) {
@@ -42,11 +42,11 @@ pipeline {
             }
         }
     }
-    stage('Cleaning up') {
+    /*stage('Cleaning up') {
       steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
         sh "docker rmi registry.shrulp.com/$registry:$BUILD_NUMBER"
       }
-    }
+    }*/
   }
 }
