@@ -35,7 +35,7 @@ pipeline {
     }*/
     stage('SCP copy') {
         steps {
-            withCredentials([sshUserPrivateKey(credentialsId: '0ed2afa1-cb4b-4931-a7a7-a38283cd4afa', keyFileVariable: 'MY_SSH_KEY')]) {
+            withCredentials([sshUserPrivateKey(credentialsId: '171f98f4-f21b-476c-8264-b20a07667b1b', keyFileVariable: 'MY_SSH_KEY')]) {
                 sh '''
                 scp -i $MY_SSH_KEY ./* ubuntu@192.168.1.142:/home/ubuntu/testdir
                 '''
