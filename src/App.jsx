@@ -1,32 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import weevilcorpLogo from './assets/44509195.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a href="#" target="_blank">
+          <img src={weevilcorpLogo} className="logo react" alt="Weevilcorp logo" />
         </a>
       </div>
-      <h1>Vite + React3</h1>
+      <h1>Weevilcorp</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button>
+          Log in
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Dad Said <code>I Needed</code> To Get A Job
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        Copyright © 2025 Weevilcorp
       </p>
     </>
   )
