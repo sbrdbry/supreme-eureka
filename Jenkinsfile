@@ -37,11 +37,20 @@ pipeline {
         steps {
             withCredentials([sshUserPrivateKey(credentialsId: '171f98f4-f21b-476c-8264-b20a07667b1b', keyFileVariable: 'MY_SSH_KEY')]) {
                 sh '''
+                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && docker compose down"
+                '''
+                sh '''
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "rm -rf /home/ubuntu/testdir/*"
                 '''
                 sh '''
                 scp -r -i $MY_SSH_KEY ./* ubuntu@192.168.1.142:/home/ubuntu/testdir
                 '''
+                sh '''
+                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
+                '''
+                //sh '''
+                //ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
+                //'''
             }
         }
     }
