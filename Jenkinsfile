@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Cleaning up') {
       steps {
-        sh "docker rmi registry.shrulp.com/$registry:$BUILD_NUMBER"
+        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
   }
