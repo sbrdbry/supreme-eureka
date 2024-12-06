@@ -34,6 +34,12 @@ pipeline {
       }
     }*/
     stage('SCP copy') {
+        when {
+            expression {
+                //env.BRANCH_NAME == 'develop' || env.BRANCH_NAME == 'master'
+                env.BRANCH_NAME == 'main'
+            }
+        }
         steps {
             withCredentials([sshUserPrivateKey(credentialsId: '171f98f4-f21b-476c-8264-b20a07667b1b', keyFileVariable: 'MY_SSH_KEY')]) {
                 sh '''
