@@ -43,7 +43,7 @@ pipeline {
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "rm -rf /home/ubuntu/testdir/*"
                 '''
                 sh '''
-                scp -r -i $MY_SSH_KEY ./* ubuntu@192.168.1.142:/home/ubuntu/testdir
+                scp -rp -i $MY_SSH_KEY ./. ubuntu@192.168.1.142:/home/ubuntu/testdir
                 '''
                 sh '''
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
