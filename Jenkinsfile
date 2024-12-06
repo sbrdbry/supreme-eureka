@@ -33,8 +33,8 @@ pipeline {
         }
       }
     }
-    stage ('Deploy to remote host'){ {
-        steps{
+    stage ('Deploy to remote host') {
+        steps {
             sshagent(credentials : ['171f98f4-f21b-476c-8264-b20a07667b1b']) {
                 sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.1.142 uptime'
                 sh 'ssh -v ubuntu@192.168.1.142'
