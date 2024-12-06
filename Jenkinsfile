@@ -46,7 +46,7 @@ pipeline {
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && docker compose down"
                 '''
                 sh '''
-                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "rm -rf /home/ubuntu/testdir/*"
+                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "rm -rf /home/ubuntu/testdir && mkdir /home/ubuntu/testdir"
                 '''
                 sh '''
                 scp -rp -i $MY_SSH_KEY ./. ubuntu@192.168.1.142:/home/ubuntu/testdir
