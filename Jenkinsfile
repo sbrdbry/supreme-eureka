@@ -18,17 +18,17 @@ pipeline {
         }
       }
     }
-    stage('Login') {
+    /*stage('Login') {
         steps {
             sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin https://registry.shrulp.com"
         }
-    }
+    }*/
     stage('Deploy our image') {
       steps {
         script {
-          //docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
-          dockerImage.push()
-          //}
+          docker.withRegistry( 'https://registry.shrulp.com', registryCredential ) {
+            dockerImage.push()
+          }
         }
       }
     }
