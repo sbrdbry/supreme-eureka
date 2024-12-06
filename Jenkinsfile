@@ -33,15 +33,24 @@ pipeline {
         }
       }
     }*/
-    stage ('Deploy to remote host') {
+    stage('SCP copy') {
         steps {
-            sshagent(credentials : ['0ed2afa1-cb4b-4931-a7a7-a38283cd4afa']) {
-                sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.1.142 uptime'
-                sh 'ssh -v ubuntu@192.168.1.142'
-                sh 'scp ./* ubuntu@192.168.1.142:/home/ubuntu/testdir'
+            withCredentials([sshUserPrivateKey(credentialsId: '0ed2afa1-cb4b-4931-a7a7-a38283cd4afa', keyFileVariable: 'MY_SSH_KEY')]) {
+                sh '''
+                scp -i $MY_SSH_KEY ./* ubuntu@192.168.1.142:/home/ubuntu/testdir
+                '''
             }
         }
     }
+    /*stage ('Deploy to remote host') {
+        steps {
+            //sshagent(credentials : ['0ed2afa1-cb4b-4931-a7a7-a38283cd4afa']) {
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@192.168.1.142 uptime'
+            sh 'ssh -v ubuntu@192.168.1.142'
+            sh 'scp ./* ubuntu@192.168.1.142:/home/ubuntu/testdir'
+            //}
+        }
+    }*/
     /*stage('Cleaning up') {
       steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
