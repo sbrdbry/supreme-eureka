@@ -48,12 +48,21 @@ pipeline {
                 sh '''
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "rm -rf /home/ubuntu/testdir && mkdir /home/ubuntu/testdir"
                 '''
-                sh '''
+                /*sh '''
                 scp -rp -i $MY_SSH_KEY ./. ubuntu@192.168.1.142:/home/ubuntu/testdir
+                '''*/
+                sh '''
+                docker compose up -d
                 '''
                 sh '''
-                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
+                rsync -a ./ --exclude=node_modules --exclude=.git ubuntu@192.168.1.142:/home/ubuntu/testdir
                 '''
+                sh '''
+                docker compose down -v --rmi all
+                '''
+                /*sh '''
+                ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
+                '''*/
                 //sh '''
                 //ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
                 //'''
