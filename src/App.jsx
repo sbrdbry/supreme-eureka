@@ -1,4 +1,6 @@
 import weevilcorpLogo from './assets/44509195.png'
+import weevilcorpLogoWide from './assets/logo-wide.png'
+
 import './App.css'
 
 function App() {
@@ -10,13 +12,13 @@ function App() {
           <img src={weevilcorpLogo} className="logo react" alt="Weevilcorp logo" />
         </a>
       </div>
-      <h1>Weevilcorp</h1>
-      <div className="card">
+      <img src={weevilcorpLogoWide} alt="Weevilcorp logo wide" />
+      <div className="card" style={{marginTop: "-10px"}}>
         <button>
           Log in
         </button>
         <p>
-          Dad Said <code>I Needed</code> To Get A Job
+          Dad Said <code>I Needed</code> To <code>Get A Job</code>
         </p>
       </div>
       <p className="read-the-docs">
