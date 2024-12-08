@@ -55,14 +55,14 @@ pipeline {
                 docker compose up -d
                 '''
                 sh '''
-                rsync -a ./ --exclude=node_modules --exclude=.git ubuntu@192.168.1.142:/home/ubuntu/testdir
+                rsync -a ./ --exclude=node_modules --exclude=.git --exclude=dist ubuntu@192.168.1.142:/home/ubuntu/testdir
                 '''
                 sh '''
                 docker compose down -v --rmi all
                 '''
-                /*sh '''
+                sh '''
                 ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
-                '''*/
+                '''
                 //sh '''
                 //ssh -i $MY_SSH_KEY ubuntu@192.168.1.142 "cd /home/ubuntu/testdir && npm i && npm run build && docker compose up -d"
                 //'''
