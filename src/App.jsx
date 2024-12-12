@@ -22,7 +22,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Copyright © 2025 Weevilcorp
+        Copyright © 2025 Weevi1corp
       </p>
     </>
   )
